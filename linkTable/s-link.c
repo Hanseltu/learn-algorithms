@@ -15,17 +15,18 @@ typedef struct Node
 /* 头插法建立单链表 */
 LinkListPtr creat_head(int n){
     LinkListPtr list,node;
-    ElemType data;
+    //ElemType data;
     int i;
 
     list = (LinkListPtr)malloc(sizeof(Node));
     list->next = NULL;
-    printf("Please input the number of the array \n");
+    //printf("Please input the number of the array \n");
     for (i = 0; i < n; i++)
     {
+        int a[] = {1,2,3,4,5,6,7,8,9};
         node = (LinkListPtr)malloc(sizeof(Node));
-        scanf("%d",&data);
-        node->data = data;
+        //scanf("%d",&data);
+        node->data = a[i];
         node->next = list->next;
         list->next = node;
     }
