@@ -14,14 +14,14 @@ typedef struct Node{
     }Node;
 ```
 
-* **头插法**建立单链表(关键步骤)
+* **头插法**建立单链表
 ```c
 node->data = &data;
 node->next = list->next;
 list->next = node;
 ```
 
-* **尾插法**建立单链表(关键步骤)
+* **尾插法**建立单链表
 ```c
 node->data = &data;
 while(p->next)  //将指针移到最后一个结点
@@ -31,5 +31,32 @@ while(p->next)  //将指针移到最后一个结点
 node->next = NULL;
 p-next = node;
 ```
+
+* **插入**数据到指定位置
+```c
+while(i < pos-1 && p) //将指针移动到第pos-1个结点位置
+{
+    p = p->next;
+    i++;
+}
+newNode->data = e;
+newNode->next = p->next;
+p->next = newNode;
+```
+
+* **删除**第pos个结点
+```c
+while(p && i < pos-1) //将指针移动到第pos-1个结点位置
+{
+    p = p->next;
+    i++;
+}
+q = p->next;
+*e = q->data;
+p->next = q->next;
+free(q);
+```
+
+
 
 
