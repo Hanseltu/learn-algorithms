@@ -11,11 +11,12 @@
 typedef struct Node{
         ElemType data; //数据域
         struct Node* next; //指针域
-    }Node;
+    }Node,*DLinkListPtr;
 ```
 
 * **头插法**建立单链表
 ```c
+node = (DLinkListPtr)malloc(sizeof(Node));
 node->data = &data;
 node->next = list->next;
 list->next = node;
@@ -70,13 +71,34 @@ typedef struct DNode{
 
  * **建立**双链表
  ```c
+node = (DLinkListPtr)malloc(sizeof(DNode));
 p->next = node;
 node->prior = p;
 p = p->next;
  ```
 * **插入**数据到第pos个位置
-```C
 
+    * 插入的位置在表头
+
+    * 插入的位置在最后
+
+    * 插入的位置在中间
+
+
+* **删除**指定数值的结点
+
+```c
+while(p){
+    if(p->data == data)
+    {
+        p->prior->next = p->next;
+        p->next->prior = p->prior;
+        free(p);
+        return dlist;
+    }
+    p-p>next;
+    }
+    printf("Not availiable!");
 ```
 
 
