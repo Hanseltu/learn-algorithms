@@ -49,6 +49,46 @@ DLinkListPtr insert_dlist(DLinkListPtr dlist,Elemtype data,int pos){
         dlist->prior = temp;
         dlist = temp;
     }
+    else
+    {
+        DLinkListPtr p = dlist;
+
+        /* 找到要插入位置的前一个结点 */
+        for(int i = 0;i < pos - 1;i++)
+        {
+            p = p->next;
+        }
+        if (p->next == NULL) /* 如果插入的位置在最后一个结点 */
+        {
+            p->next = temp;
+            temp->prior = p;
+        }
+        else /* 插入的位置是中间结点 */
+        {
+            p->next->prior = temp;
+            temp->next = p->next;
+            temp->prior = p;
+            p->next = temp;
+        }
+    }
+    return dlist;
+}
+
+/* 删除结点（特定数值的结点） */
+DLinkListPtr deleteBydata(DLinkListPtr dlist,Elemtype data){
+    DLinkListPtr p = dlist;
+    while(p)
+    {
+        if (p->data == data)
+        {
+            p->prior->next = p->next;
+            p->next->prior = p->prior;
+            free(p);
+            return dlist;
+        }
+        p = p->next;
+    }
+    printf("There is no data in the list which data is %d \n",data);
     return dlist;
 }
 Status printDLink(DLinkListPtr dlist){
@@ -65,6 +105,11 @@ Status printDLink(DLinkListPtr dlist){
 int main(){
     DLinkListPtr list = creat_dlist(10);
     printDLink(list);
+    DLinkListPtr list2 = insert_dlist(list,11,10);
+    printDLink(list2);
+    printf("-----------------------insert----------------------\n");
+    DLinkListPtr list3 = deleteBydata(list,11);
+    printDLink(list3);
     return 0;
 }
 
