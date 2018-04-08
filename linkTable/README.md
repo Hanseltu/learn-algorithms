@@ -57,6 +57,25 @@ p->next = q->next;
 free(q);
 ```
 
+### 双链表的基本操作
+
+* 结构体定义
+```c
+typedef struct DNode{
+    Elemtype data;
+    DNode* struct prior;
+    DNode* struct next;
+    }Node,*DLinkListPtr;
+```
+
+ * **建立**双链表
+ ```c
+p->next = node;
+node->prior = p;
+p = p->next;
+ ```
+
+
 
 
 
