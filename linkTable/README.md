@@ -32,7 +32,7 @@ node->next = NULL;
 p-next = node;
 ```
 
-* **插入**数据到指定位置
+* **插入**数据到第pos个位置
 ```c
 while(i < pos-1 && p) //将指针移动到第pos-1个结点位置
 {
@@ -74,7 +74,10 @@ p->next = node;
 node->prior = p;
 p = p->next;
  ```
+* **插入**数据到第pos个位置
+```C
 
+```
 
 
 

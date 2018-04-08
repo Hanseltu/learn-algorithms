@@ -34,6 +34,23 @@ DLinkListPtr creat_dlist(int n){
     return head;
 }
 
+/* 插入数据到第pos个位置 */
+DLinkListPtr insert_dlist(DLinkListPtr dlist,Elemtype data,int pos){
+    /* 新建数据域为data的结点 */
+    DLinkListPtr temp = (DLinkListPtr)malloc(sizeof(DNode));
+    temp->data = data;
+    temp->prior = NULL;
+    temp->next = NULL;
+
+    /* 特殊情况：插入到链表头 */
+    if(pos == 1)
+    {
+        temp->next = dlist;
+        dlist->prior = temp;
+        dlist = temp;
+    }
+    return dlist;
+}
 Status printDLink(DLinkListPtr dlist){
     DLinkListPtr p = dlist;
     p = dlist->next;
