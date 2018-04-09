@@ -15,7 +15,11 @@
 
 5. 需要2n次的字符串比较
 
+For example
 
+T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
+
+![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/native.png)
 
 ## Rabin-Karp算法
 
