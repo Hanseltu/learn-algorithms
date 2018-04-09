@@ -17,6 +17,10 @@
 
 
 
+
+
+
+
 **For example**
 
 T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
@@ -33,23 +37,34 @@ T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
 
 
 
+
+
+
 ###  Knuth-Morris-Pratt(KMP算法)
 
 **Knuth-Morris-Pratt**字符串查找算法，简称"KMP"算法。
 
 介绍算法之前，先了解一个概念————最长前缀后缀
 
-如果给定的模式串是:"ABCDABD"，从左至右遍历整个模式串，其各个子串的前缀后缀分别如下表格所示
+如果给定的模式串是:"ABCDABD"，从左至右遍历整个模式串，其各个子串的前缀后缀分别如下表格:
+
+
 
 ![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/prefix.jpg)
 
-通过找到各个子串的最大公共元素长度，可以得到**next数组表**，此next数组表格是KMP的精髓所在，
 
-next数组的作用是`失配时，模式串向右移动的位数为:已匹配字符数-失配字符串的上一位字符所对应的最大长度值`
+
+通过找到各个子串的最大公共元素长度，可以得到**next数组表**，此next数组表是KMP的精髓所在,next数组的作用是
+
+`失配时，模式串向右移动的位数为:已匹配字符数-失配字符串的上一位字符所对应的最大长度值`
 
 真的神奇，这样就不用像暴力匹配那样重复比较一样的了，不知道这三位大佬是怎么想出来的。。。
 
+
+
 ![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/next.jpg)
+
+
 
 
 算法的主要步骤如下：
@@ -59,6 +74,8 @@ next数组的作用是`失配时，模式串向右移动的位数为:已匹配�
 2. 求next数组
 
 3. 根据next数组进行匹配
+
+
 
 
 #### 具体细节参考[从头到尾彻底理解KMP](https://blog.csdn.net/v_july_v/article/details/7041827)
