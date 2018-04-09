@@ -21,7 +21,7 @@ T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
 
 ![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/native_match.png)
 
-## Rabin-Karp算法
+
 
 ### Rabin-Karp算法
 
