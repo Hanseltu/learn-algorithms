@@ -1,8 +1,7 @@
 ## 字符串匹配相关算法
 
-------
 ### 朴素字符串匹配
-
+-----
 
 * 朴素字符串匹配算法又称为**暴力匹配算法(Brute Force Algorithm)**,主要特点如下：
 
@@ -29,18 +28,20 @@ T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
 ![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/native_match.png)
 
 
-------
 ### Rabin-Karp算法
-
-
 -----
+
+
 ### 有限自动机算法
-
-
-
-
 -----
+
+
+
+
 ###  Knuth-Morris-Pratt(KMP算法)
+-----
+
+
 
 **Knuth-Morris-Pratt**字符串查找算法，简称"KMP"算法。
 
@@ -67,7 +68,7 @@ T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
 
 
 
-算法的主要步骤如下：
+* **算法的主要步骤如下：
 
 1. 寻找前缀后缀最长公共元素长度
 
