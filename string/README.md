@@ -30,3 +30,8 @@ T = "acaabc"; P = "aab",则朴素匹配算法过程如下图
 ###  Knuth-Morris-Pratt(KMP算法)
 
 
+
+
+#### [从头到尾彻底理解KMP](https://blog.csdn.net/v_july_v/article/details/7041827)
+
+
