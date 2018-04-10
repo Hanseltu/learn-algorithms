@@ -62,20 +62,22 @@ KMP 算法的基本思路就是设法利用这些已知信息，不要把 "搜�
 这样的位移 s’ 是大于 s 的但未必非法的第一个位移，因为已知 T[s+1..s+q] 。在最好的情况下有 s’ = s+q，因此立刻能排除掉位移 s+1, s+2 .. s+q-1。
 在任何情况下，对于新的位移 s’，无需把 P 的前 k 个字符与 T 中相应的字符进行比较，因为它们肯定匹配。
 可以用模式 P 与其自身进行比较，以预先计算出这些必要的信息。例如上图（c）中所示，由于 T[s’+1..s’+k] 是文本中已经知道的部分，所以它是字符串 Pq 的一个后缀。
+
 此处我们引入模式的前缀函数 π（Pai），π 包含有模式与其自身的位移进行匹配的信息。这些信息可用于避免在朴素的字符串匹配算法中，对无用位移进行测试。
+
 π[q] = max {k : k < q and Pk ⊐ Pq} 
+
 π[q] 代表当前字符之前的字符串中，最长的共同前缀后缀的长度。
 
 下图给出了关于模式 P = ababababca 的完整前缀函数 π，可称为部分匹配表（Partial Match Table）。
 
 
-![](https://github.com/Hanseltu/learn-algorithms/blob/master/π.png)
+![](https://github.com/Hanseltu/learn-algorithms/blob/master/string/π.png)
 
 
 
 
 **计算过程：**
-
 
 1. π[1] = 0，a 仅一个字符，前缀和后缀为空集，共有元素最大长度为 0；
 2. π[2] = 0，ab 的前缀 a，后缀 b，不匹配，共有元素最大长度为 0；
@@ -83,8 +85,8 @@ KMP 算法的基本思路就是设法利用这些已知信息，不要把 "搜�
 4. π[4] = 2，abab，前缀 a **ab** aba，后缀 bab **ab** b，共有元素最大长度为 2；
 5. π[5] = 3，ababa，前缀 a ab **aba** abab，后缀 baba **aba** ba a，共有元素最大长度为 3；
 6. π[6] = 4，ababab，前缀 a ab aba **abab** ababa，后缀 babab **abab** bab ab b，共有元素最大长度为 4；
-7. π[7] = 5，abababa，前缀 a ab aba abab **ababa** ababab，后缀 bababa **ababa** baba aba ba a，共有元素最大长度为 5；
-8. π[8] = 6，abababab，前缀 .. **ababab** ..，后缀 .. **ababab** ..，共有元素最大长度为 6；
+7. π[7] = 5，abababa，前缀a ab aba abab **ababa** ababab，后缀bababa **ababa** baba aba ba a，共有元素最大长度为5；
+8. π[8] = 6，abababab，前缀 .. **ababab** ..，后缀 .. **ababab** ..，共有元素最大长度为6；
 9. π[9] = 0，ababababc，前缀和后缀不匹配，共有元素最大长度为 0；
 10.π[10] = 1，ababababca，前缀 .. **a** ..，后缀 .. **a** ..，共有元素最大长度为 1；
 
