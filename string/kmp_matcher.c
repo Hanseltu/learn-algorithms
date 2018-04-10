@@ -14,7 +14,7 @@ void Compute_prefix_fun(char P[]){
     {
         while (k > 0 && P[k] != P[q])
         {
-            k = PI[k];
+            k = PI[k-1];
         }
         if (P[k] == P[q])
         {
@@ -48,8 +48,8 @@ void KMP_matcher(char T[],char P[]){
     }
 }
 int main(){
-    char T[] = "abcaabccsfs";
-    char P[] = "aabc";
+    char T[] = "aaaaaaaaaaaaaaabb";
+    char P[] = "aaab";
     //scanf("%s",T);
     //scanf("%s",P);
     KMP_matcher(T,P);
