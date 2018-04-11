@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<bool.h>
+#include<stdbool.h>
 /*
 #define STACK_INIT_SIZE 10
 #define STACKINCREMENT 2
@@ -166,25 +166,36 @@ int initStack(){
 // isEmpty
 bool isEmpty(){
     if(0 == S.top)
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 // isFull
 bool isFull(){
     if(STACK_SIZE == S.top)
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 // push
 int push(int e){
-    if(isFull()){
+    if(isFull())
+    {
         printf("stack overflow! stop push element\n");
         return -1;
-    }else{
+    }
+    else
+    {
         S.top++;
         S.array[S.top-1] = e;
         return S.top;
@@ -193,17 +204,22 @@ int push(int e){
 
 // pop
 int pop(){
-    if (isEmpty()) {
+    if (isEmpty())
+    {
         printf("stack empty! pop null\n");
-    }else{
+    }
+    else
+    {
         S.top--;
         return S.array[S.top+1];
     }
+    return 0;
 }
 
 // clear
 void clear(){
-    while(!isEmpty()){
+    while(!isEmpty())
+    {
         pop();
     }
 }
@@ -211,9 +227,12 @@ void clear(){
 // printAll
 void printAll(){
     if(isEmpty())
+    {
         printf("empty stack! print nothing");
+    }
     int i = 0;
-    for(i=0; i< S.top; i++){
+    for(i=0; i< S.top; i++)
+    {
         printf("%d  ", S.array[i]);
     }
     printf("\n");
