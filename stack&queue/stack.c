@@ -257,6 +257,7 @@ bool isValid(char* s) {
       case '{':push('{');
         break;
       case ')':
+        int e = pop
         if (pop() != '(')
           return false;
         break;
