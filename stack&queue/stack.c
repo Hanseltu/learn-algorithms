@@ -243,6 +243,46 @@ int getLength(){
     return S.top;
 }
 
+//括号匹配应用
+
+bool isValid(char* s) {
+  InitStack;
+  int i = 0;
+  while(s[i] != '\0'){
+    switch(s[i]){
+      case '(':push('(');
+        break;
+      case '[':push('[');
+        break;
+      case '{':push('{');
+        break;
+      case ')':
+        if (pop() != '(')
+          return false;
+        break;
+      case ']':
+        if (pop() != '[')
+          return false;
+        break;
+      case '}':
+        if(pop() != '{')
+          return false;
+      default:
+        break;
+    }
+    i++;
+    if (!isEmpty()){
+      printf("Not ok!");
+      return false;
+    }
+    else
+    {
+      printf("OK!");
+      return true;
+    }
+  }
+}
+
 
 int main(void){
 
