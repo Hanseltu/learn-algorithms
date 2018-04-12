@@ -156,7 +156,7 @@ typedef struct stack{
 }STACK;
 
 STACK S;
-
+int e1,e2,e3,e4;
 // init
 int initStack(){
     S.top = 0;
@@ -257,16 +257,18 @@ bool isValid(char* s) {
       case '{':push('{');
         break;
       case ')':
-        int e = pop
-        if (pop() != '(')
+        e1 = pop();
+        if (e1 != '(')
           return false;
         break;
       case ']':
-        if (pop() != '[')
+	e2 = pop();
+        if (e2 != '[')
           return false;
         break;
       case '}':
-        if(pop() != '{')
+	e3 = pop();
+        if(e3 != '{')
           return false;
       default:
         break;
