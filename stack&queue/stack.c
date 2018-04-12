@@ -246,7 +246,7 @@ int getLength(){
 //括号匹配应用
 
 bool isValid(char* s) {
-  InitStack;
+  initStack();
   int i = 0;
   while(s[i] != '\0'){
     switch(s[i]){
@@ -286,7 +286,7 @@ bool isValid(char* s) {
 
 int main(void){
 
-    initStack();
+   /* initStack();
 
     int i = 0;
     for (i = 0; i < 10; i++) {
@@ -317,5 +317,8 @@ int main(void){
     printf("getLength: %d\n", getLength());
     printAll();
 
+    */
+    char s[] = "({})";
+    printf("%d\n",isValid(s));
     return 0;
 }
