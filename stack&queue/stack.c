@@ -44,6 +44,47 @@ int pop_stack(slink stack){
 	return stack->data[stack->sp--];
 }
 
+bool isValid(char* s) {
+  initStack();
+  int i = 0;
+  while(s[i] != '\0'){
+    switch(s[i]){
+      case '(':push('(');
+        break;
+      case '[':push('[');
+        break;
+      case '{':push('{');
+        break;
+      case ')':
+        e1 = pop();
+        if (e1 != '(')
+          return false;
+        break;
+      case ']':
+	e2 = pop();
+        if (e2 != '[')
+          return false;
+        break;
+      case '}':
+	e3 = pop();
+        if(e3 != '{')
+          return false;
+      default:
+        break;
+    }
+    i++;
+    if (!isEmpty()){
+      printf("Not ok!");
+      return false;
+    }
+    else
+    {
+      printf("OK!");
+      return true;
+    }
+  }
+}
+
 
 
 
