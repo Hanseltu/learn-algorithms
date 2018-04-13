@@ -225,13 +225,13 @@ int main(){
 	QElemType e;
 	delete_queue(&q,&e);
 	printf("删除的元素为%d\n",e);
-	system("pause");
+	//system("pause");
 	printf("销毁队列\n");
 	printf("再次打印输出队列\n");
 	display_queue_2(&q);
 	destroy_queue_2(&q);
 	printf("再次打印输出队列\n");
 	display_queue_2(&q);
-	system("pause");
+	//system("pause");
     return 0;
 }
