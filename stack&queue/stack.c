@@ -1,104 +1,89 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<stdbool.h>
-
-struct Stack{
-	int capability;
-	int sp;
-	int *data;
-};
-typedef struct Stack *slink;
-
-//建立栈
-slink create_stack(int capability){
-	slink stack=malloc(sizeof(struct Stack));
-	if(!stack)
-		return stack;
-	stack->capability=capability;
-	stack->sp=-1;
-	stack->data=(int*)malloc(sizeof(int)*capability);
-	return stack;
-}
-
-
-//判断栈空
-int empty(slink stack){
-	return stack->sp==-1;
-}
-
-//判断栈满
-int full(slink stack){
-	return stack->sp==stack->capability-1;
-}
-
-//入栈操作
-void push_stack(slink stack,int item){
-	stack->data[++stack->sp]=item;
-}
-
-//出栈操作
-int pop_stack(slink stack){
-	if(empty(stack))
-		return -1;
-	return stack->data[stack->sp--];
-}
-
-bool isValid(char* s) {
-  initStack();
-  int i = 0;
-  while(s[i] != '\0'){
-    switch(s[i]){
-      case '(':push('(');
-        break;
-      case '[':push('[');
-        break;
-      case '{':push('{');
-        break;
-      case ')':
-        e1 = pop();
-        if (e1 != '(')
-          return false;
-        break;
-      case ']':
-	e2 = pop();
-        if (e2 != '[')
-          return false;
-        break;
-      case '}':
-	e3 = pop();
-        if(e3 != '{')
-          return false;
-      default:
-        break;
-    }
-    i++;
-    if (!isEmpty()){
-      printf("Not ok!");
-      return false;
-    }
-    else
-    {
-      printf("OK!");
-      return true;
-    }
-  }
-}
-
-
-
-
-int main(){
-	slink stack=create_stack(5);
-	int data[]={1,2,3,4,5,6,7,8,9};
-	int i=0;
-	while(!full(stack))
-		push_stack(stack,data[i++]);
-	while(!empty(stack))
-		printf("%d\n",pop_stack(stack) );
-	while(i<9 && !full(stack))
-		push_stack(stack,data[i++]);
-	while(!empty(stack))
-		printf("%d\n",pop_stack(stack) );
-}
-
+//括号匹配的检验程序  
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+#define  MAXLEN 50  
+typedef struct stack   
+{  
+    char ch[50];  
+    int top;  
+}ST;  
+//栈的初始化  
+ST *ST_Init()  
+{  
+    ST *st;  
+    if (st=(ST *)malloc(sizeof(ST)))  
+    {  
+        st->top=0;  
+        return st;  
+    }  
+    return NULL;  
+}  
+//出栈操作  
+int ST_Pop(ST *st)  
+{  
+    if (st->top==0)  
+    {  
+        printf("栈为空\n");  
+        return 0;  
+    }  
+    st->top--;  
+    return st->ch[st->top];  
+}  
+  
+//入栈操作  
+void st_Push(ST *st,char c)  
+{  
+    if (st->top==MAXLEN)  
+    {  
+        printf("栈溢出\n");  
+        return ;  
+    }  
+    st->ch[st->top]=c;  
+    st->top++;  
+}  
+//符号检验函数  
+void check_symbol(ST *st,char *a)  
+{  
+    int i;  
+    st_Push(st,a[0]);  
+  
+    for (i=1;i<strlen(a);i++)  
+    {  
+        //遍历每一个元素，判断出栈还是入栈  
+        if ((a[i]==']'&&st->ch[st->top-1]=='[')||(a[i]==')'&&st->ch[st->top-1]=='('))//出栈的条件  
+        {  
+            ST_Pop(st);  
+        }  
+        else  
+        {  
+            st_Push(st,a[i]);  
+        }  
+    }  
+    if(st->top==0)  
+    {  
+        printf("括号是匹配的\n\n");  
+    }  
+    else  
+  
+    {  
+        printf("括号不匹配\n\n");  
+    }  
+}  
+  
+void main()  
+{  
+  
+    while (1)  
+    {  
+        char s[50];  
+        ST *st;  
+        st=ST_Init();     
+        printf("请输入一串括号：\n");  
+        scanf("%s",s);  
+        if(s[0]=='E')  
+            return;  
+        check_symbol(st,s);  
+    }  
+  
+}  
