@@ -33,15 +33,16 @@ int ST_Pop(ST *st)
 }
 
 //入栈操作
-void st_Push(ST *st,char c)
+int st_Push(ST *st,char c)
 {
     if (st->top==MAXLEN)
     {
         printf("栈溢出\n");
-        return ;
+        return 0;
     }
     st->ch[st->top]=c;
     st->top++;
+    return 0;
 }
 //符号检验函数
 bool check_symbol(ST *st,char *a)
@@ -75,7 +76,7 @@ bool check_symbol(ST *st,char *a)
 
 int main()
 {
-    char s[] = "()({}})[][]";
+    char s[] = "()[][]";
     ST *st;
     st=ST_Init();
     printf("%d \n",check_symbol(st,s));
