@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+
+/****  栈的顺序存储（数组实现）*******/
 #define  MAXLEN 50
 typedef struct stack
 {
@@ -44,7 +46,12 @@ int st_Push(ST *st,char c)
     st->top++;
     return 0;
 }
-//符号检验函数
+
+/************ 栈的链式存储（链表实现）****************/
+
+
+
+//应用：括号匹配检验
 bool check_symbol(ST *st,char *a)
 {
     int i;
