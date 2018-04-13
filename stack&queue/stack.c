@@ -12,8 +12,8 @@ typedef struct stack
 //栈的初始化
 ST *ST_Init()
 {
-    ST *st ;
-    if (st = (ST*)malloc(sizeof(ST)))
+    ST *st = NULL;
+    if ((st = (ST*)malloc(sizeof(ST))))
     {
         st->top=0;
         return st;
