@@ -1,6 +1,5 @@
-
 #include <stdio.h>
-#include "double_link.h"
+#include "/home/haoxin/github/learn-algorithms/linear/basic/double_link_list/c/var_dlink/double_link.h"
 
 /**
  * C 语言实现的双向链表的测试程序。
@@ -77,7 +76,7 @@ typedef struct tag_stu
 	char name[20];
 }stu;
 
-static stu arr_stu[] = 
+static stu arr_stu[] =
 {
 	{10, "sky"},
 	{20, "jody"},

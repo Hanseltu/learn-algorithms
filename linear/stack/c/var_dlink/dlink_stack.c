@@ -5,35 +5,36 @@
 /**
  * C 语言: 双向链表实现栈，能存储任意数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 // 创建栈
-int create_dlink_stack() 
+int create_dlink_stack()
 {
 	return create_dlink();
 }
 
 // 销毁栈
-int destroy_dlink_stack() 
+int destroy_dlink_stack()
 {
 	return destroy_dlink();
 }
 
 // 将val添加到栈中
-int push(void *p) 
+int push(void *p)
 {
 	return dlink_insert_first(p);
 }
 
 // 返回“栈顶元素值”
-void* peek() 
+void* peek()
 {
 	return dlink_get_first();
 }
 
 // 返回“栈顶元素值”，并删除“栈顶元素”
-void* pop() 
+void* pop()
 {
 	void *p = peek();
 	dlink_delete_first();
@@ -41,7 +42,7 @@ void* pop()
 }
 
 // 返回“栈”的大小
-int size() 
+int size()
 {
 	return dlink_size();
 }
@@ -59,7 +60,7 @@ typedef struct tag_stu
 	char name[20];
 }stu;
 
-static stu arr_stu[] = 
+static stu arr_stu[] =
 {
 	{10, "sky"},
 	{20, "jody"},
@@ -68,7 +69,7 @@ static stu arr_stu[] =
 };
 #define ARR_STU_SIZE ( (sizeof(arr_stu)) / (sizeof(arr_stu[0])) )
 
-static void print_stu(stu *p) 
+static void print_stu(stu *p)
 {
 	if (!p)
 		return ;
@@ -76,7 +77,7 @@ static void print_stu(stu *p)
 	printf("id=%d, name=%s\n", p->id, p->name);
 }
 
-void main()
+int main()
 {
 	stu *pval=NULL;
 
@@ -110,4 +111,5 @@ void main()
 
 	// 销毁栈
 	destroy_dlink_stack();
+    return 0;
 }

@@ -5,8 +5,9 @@
 /**
  * C 语言: 单向链表实现的栈，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 单向链表的“节点”
@@ -19,7 +20,7 @@ struct node {
 static struct node *phead=NULL;
 
 // 创建节点，val为节点值
-static struct node* create_node(int val) 
+static struct node* create_node(int val)
 {
 	struct node *pnode=NULL;
 	pnode = (struct node*)malloc(sizeof(struct node));
@@ -27,12 +28,12 @@ static struct node* create_node(int val)
 		return NULL;
 	pnode->val = val;
 	pnode->next = NULL;
-	
+
 	return pnode;
 }
 
 // 销毁单向链表
-static int destroy_single_link() 
+static int destroy_single_link()
 {
 	struct node *pnode=NULL;
 
@@ -45,26 +46,26 @@ static int destroy_single_link()
 }
 
 // 将val插入到链表的表头位置
-static struct node* push(int val) 
+static struct node* push(int val)
 {
 	struct node *pnode = NULL;
-	
+
 	pnode = create_node(val);
 	pnode->next = phead;
 	phead = pnode;
-	
+
 	return phead;
 }
 
 // 删除链表的表头
-static int pop() 
+static int pop()
 {
 	if (!phead)
 	{
 		printf("remove failed! link is empty!");
 		return -1;
 	}
-	
+
 	int ret;
 	struct node *pnode;
 	ret = phead->val;
@@ -76,7 +77,7 @@ static int pop()
 }
 
 // 返回链表的表头节点的值
-static int peek() 
+static int peek()
 {
 	if (!phead)
 	{
@@ -88,7 +89,7 @@ static int peek()
 }
 
 // 返回链表中节点的个数
-static int size() 
+static int size()
 {
 	int count=0;
 	struct node *pnode=phead;
@@ -101,7 +102,7 @@ static int size()
 }
 
 // 链表是否为空
-static int is_empty() 
+static int is_empty()
 {
 	return phead==NULL;
 }
@@ -109,10 +110,10 @@ static int is_empty()
 // 打印“栈”
 static void print_single_link()
 {
-	if (is_empty()) 
+	if (is_empty())
 	{
 		printf("stack is Empty\n");
-		return 0;
+	//	return 0;
 	}
 
 	printf("stack size()=%d\n", size());
@@ -127,7 +128,7 @@ static void print_single_link()
 	}
 }
 
-void main() 
+int main()
 {
 	int tmp=0;
 
@@ -153,4 +154,5 @@ void main()
 
 	// 销毁栈
 	destroy_single_link();
+    return 0;
 }

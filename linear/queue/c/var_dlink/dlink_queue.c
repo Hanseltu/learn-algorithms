@@ -5,36 +5,37 @@
 /**
  * C 语言: 双向链表实现“队列”，能存储任意数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 创建队列
-int create_dlink_queue() 
+int create_dlink_queue()
 {
 	return create_dlink();
 }
 
 // 销毁队列
-int destroy_dlink_queue() 
+int destroy_dlink_queue()
 {
 	return destroy_dlink();
 }
 
 // 将p添加到队列的末尾
-int add(void *p) 
+int add(void *p)
 {
 	return dlink_append_last(p);
 }
 
 // 返回“队列开头元素”
-void* front() 
+void* front()
 {
 	return dlink_get_first();
 }
 
 // 返回“队列开头的元素”，并删除“该元素”
-void* pop() 
+void* pop()
 {
 	void *p = dlink_get_first();
 	dlink_delete_first();
@@ -42,7 +43,7 @@ void* pop()
 }
 
 // 返回“队列”的大小
-int size() 
+int size()
 {
 	return dlink_size();
 }
@@ -60,7 +61,7 @@ typedef struct tag_stu
 	char name[20];
 }stu;
 
-static stu arr_stu[] = 
+static stu arr_stu[] =
 {
 	{10, "sky"},
 	{20, "jody"},
@@ -69,7 +70,7 @@ static stu arr_stu[] =
 };
 #define ARR_STU_SIZE ( (sizeof(arr_stu)) / (sizeof(arr_stu[0])) )
 
-static void print_stu(stu *p) 
+static void print_stu(stu *p)
 {
 	if (!p)
 		return ;
@@ -77,7 +78,7 @@ static void print_stu(stu *p)
 	printf("id=%d, name=%s\n", p->id, p->name);
 }
 
-void main()
+int main()
 {
 	stu *pval=NULL;
 
@@ -112,4 +113,5 @@ void main()
 
 	// 销毁队列
 	destroy_dlink_queue();
+    return 0;
 }

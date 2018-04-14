@@ -5,36 +5,37 @@
 /**
  * C 语言: 双向链表实现“队列”，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 创建队列
-int create_dlink_queue() 
+int create_dlink_queue()
 {
 	return create_dlink();
 }
 
 // 销毁队列
-int destroy_dlink_queue() 
+int destroy_dlink_queue()
 {
 	return destroy_dlink();
 }
 
 // 将val添加到队列的末尾
-int add(int val) 
+int add(int val)
 {
 	return dlink_append_last(val);
 }
 
 // 返回“队列开头元素”
-int front() 
+int front()
 {
 	return dlink_get_first();
 }
 
 // 返回并删除“队列开头元素”
-int pop() 
+int pop()
 {
 	int ret = dlink_get_first();
 	dlink_delete_first();
@@ -42,7 +43,7 @@ int pop()
 }
 
 // 返回“队列”的大小
-int size() 
+int size()
 {
 	return dlink_size();
 }
@@ -53,7 +54,7 @@ int is_empty()
 	return dlink_is_empty();
 }
 
-void main()
+int main()
 {
 	int tmp=0;
 
@@ -84,4 +85,5 @@ void main()
 
 	// 销毁队列
 	destroy_dlink_queue();
+    return 0;
 }

@@ -12,8 +12,9 @@
  * (03) object_test()
  *      演示向双向链表操作“对象”。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 双向链表操作int数据
@@ -46,7 +47,7 @@ void int_test()
 
 void string_test()
 {
-	char* sarr[4] = {"ten", "twenty", "thirty", "forty"};
+	char * sarr[4] = {"ten", "twenty", "thirty", "forty"};
 
 	printf("\n----%s----\n", __func__);
 	create_dlink();		// 创建双向链表
@@ -77,7 +78,7 @@ typedef struct tag_stu
 	char name[20];
 }stu;
 
-static stu arr_stu[] = 
+static stu arr_stu[] =
 {
 	{10, "sky"},
 	{20, "jody"},

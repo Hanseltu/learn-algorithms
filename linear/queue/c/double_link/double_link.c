@@ -5,12 +5,13 @@
 /**
  * C 语言: 双向链表，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 双向链表节点
-typedef struct tag_node 
+typedef struct tag_node
 {
 	struct tag_node *prev;
 	struct tag_node *next;
@@ -66,7 +67,7 @@ int dlink_size() {
 }
 
 // 获取“双向链表中第index位置的节点”
-static node* get_node(int index) 
+static node* get_node(int index)
 {
 	if (index<0 || index>=count)
 	{
@@ -79,7 +80,7 @@ static node* get_node(int index)
 	{
 		int i=0;
 		node *pnode=phead->next;
-		while ((i++) < index) 
+		while ((i++) < index)
 			pnode = pnode->next;
 
 		return pnode;
@@ -89,20 +90,20 @@ static node* get_node(int index)
 	int j=0;
 	int rindex = count - index - 1;
 	node *rnode=phead->prev;
-	while ((j++) < rindex) 
+	while ((j++) < rindex)
 		rnode = rnode->prev;
 
 	return rnode;
 }
 
 // 获取“第一个节点”
-static node* get_first_node() 
+static node* get_first_node()
 {
 	return get_node(0);
 }
 
 // 获取“最后一个节点”
-static node* get_last_node() 
+static node* get_last_node()
 {
 	return get_node(count-1);
 }
@@ -111,7 +112,7 @@ static node* get_last_node()
 int dlink_get(int index)
 {
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 	{
 		printf("%s failed!\n", __func__);
 		return -1;
@@ -134,7 +135,7 @@ int dlink_get_last()
 }
 
 // 将“value”插入到index位置。成功，返回0；否则，返回-1。
-int dlink_insert(int index, int value) 
+int dlink_insert(int index, int value)
 {
 	// 插入表头
 	if (index==0)
@@ -142,7 +143,7 @@ int dlink_insert(int index, int value)
 
 	// 获取要插入的位置对应的节点
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 		return -1;
 
 	// 创建“节点”
@@ -161,7 +162,7 @@ int dlink_insert(int index, int value)
 }
 
 // 将“value”插入到表头位置
-int dlink_insert_first(int value) 
+int dlink_insert_first(int value)
 {
 	node *pnode=create_node(value);
 	if (!pnode)
@@ -176,12 +177,12 @@ int dlink_insert_first(int value)
 }
 
 // 将“value”插入到末尾位置
-int dlink_append_last(int value) 
+int dlink_append_last(int value)
 {
 	node *pnode=create_node(value);
 	if (!pnode)
 		return -1;
-	
+
 	pnode->next = phead;
 	pnode->prev = phead->prev;
 	phead->prev->next = pnode;
@@ -194,7 +195,7 @@ int dlink_append_last(int value)
 int dlink_delete(int index)
 {
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 	{
 		printf("%s failed! the index in out of bound!\n", __func__);
 		return -1;
@@ -206,16 +207,16 @@ int dlink_delete(int index)
 	count--;
 
 	return 0;
-}	
+}
 
 // 删除第一个节点
-int dlink_delete_first() 
+int dlink_delete_first()
 {
 	return dlink_delete(0);
 }
 
 // 删除组后一个节点
-int dlink_delete_last() 
+int dlink_delete_last()
 {
 	return dlink_delete(count-1);
 }

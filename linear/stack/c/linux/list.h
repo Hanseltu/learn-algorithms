@@ -1,4 +1,4 @@
-
+#include<malloc.h>
 #ifndef _LIST_HEAD_H
 #define _LIST_HEAD_H
 
@@ -22,9 +22,7 @@ static inline void INIT_LIST_HEAD(struct list_head *list)
 }
 
 // 添加节点：将new插入到prev和next之间。
-static inline void __list_add(struct list_head *new,
-                  struct list_head *prev,
-                  struct list_head *next)
+static inline void __list_add(struct list_head *new, struct list_head *prev,struct list_head *next)
 {
     next->prev = new;
     new->next = next;

@@ -4,8 +4,9 @@
 /**
  * C 语言: 数组实现的栈，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 保存数据的数组
@@ -14,10 +15,10 @@ static int *arr=NULL;
 static int count;
 
 // 创建“栈”，默认大小是12
-int create_array_stack(int sz) 
+int create_array_stack(int sz)
 {
 	arr = (int *)malloc(sz*sizeof(int));
-	if (!arr) 
+	if (!arr)
 	{
 		printf("arr malloc error!");
 		return -1;
@@ -27,9 +28,9 @@ int create_array_stack(int sz)
 }
 
 // 销毁“栈”
-int destroy_array_stack() 
+int destroy_array_stack()
 {
-	if (arr) 
+	if (arr)
 	{
 		free(arr);
 		arr = NULL;
@@ -39,19 +40,19 @@ int destroy_array_stack()
 }
 
 // 将val添加到栈中
-void push(int val) 
+void push(int val)
 {
 	arr[count++] = val;
 }
 
 // 返回“栈顶元素值”
-int peek() 
+int peek()
 {
 	return arr[count-1];
 }
 
 // 返回“栈顶元素值”，并删除“栈顶元素”
-int pop() 
+int pop()
 {
 	int ret = arr[count-1];
 	count--;
@@ -59,7 +60,7 @@ int pop()
 }
 
 // 返回“栈”的大小
-int size() 
+int size()
 {
 	return count;
 }
@@ -73,7 +74,7 @@ int is_empty()
 // 打印“栈”
 void print_array_stack()
 {
-	if (is_empty()) 
+	if (is_empty())
 	{
 		printf("stack is Empty\n");
 		return ;
@@ -90,7 +91,7 @@ void print_array_stack()
 }
 
 
-void main() 
+int main()
 {
 	int tmp=0;
 
@@ -119,5 +120,6 @@ void main()
 
 	// 销毁栈
 	destroy_array_stack();
+    return 0;
 }
 

@@ -5,8 +5,9 @@
 /**
  * C 语言: 单链表实现“队列”，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 // 单链表节点
@@ -19,7 +20,7 @@ struct node {
 static struct node *phead=NULL;
 
 // 创建节点，val为节点值
-static struct node* create_node(val) 
+static struct node* create_node(int val)
 {
 	struct node *pnode=NULL;
 	pnode = (struct node*)malloc(sizeof(struct node));
@@ -27,16 +28,16 @@ static struct node* create_node(val)
 		return NULL;
 	pnode->val = val;
 	pnode->next = NULL;
-	
+
 	return pnode;
 }
 
 // 销毁单向链表
-static int destroy_single_link() 
+static int destroy_single_link()
 {
 	struct node *pnode=NULL;
 
-	while (phead != NULL) 
+	while (phead != NULL)
 	{
 		pnode = phead;
 		phead = phead->next;
@@ -46,7 +47,7 @@ static int destroy_single_link()
 }
 
 // 将val添加到队列的末尾
-static void add(int val) 
+static void add(int val)
 {
 	if (!phead)
 	{
@@ -63,13 +64,13 @@ static void add(int val)
 }
 
 // 返回“队列开头元素”
-int front() 
+int front()
 {
 	return phead->val;
 }
 
 // 返回并删除“队列开头元素”
-static int pop() 
+static int pop()
 {
 	int ret = phead->val;
 	struct node *pnode = phead;
@@ -81,12 +82,12 @@ static int pop()
 }
 
 // 返回链表中节点的个数
-static int size() 
+static int size()
 {
 	int count=0;
 	struct node *pend = phead;
 
-	while (pend) 
+	while (pend)
 	{
 		pend = pend->next;
 		count++;
@@ -96,12 +97,12 @@ static int size()
 }
 
 // 链表是否为空
-static int is_empty() 
+static int is_empty()
 {
 	return size()==0;
 }
 
-void main() 
+int main()
 {
 	int tmp=0;
 
@@ -129,4 +130,5 @@ void main()
 
 	// 销毁队列
 	destroy_single_link();
+    return 0;
 }

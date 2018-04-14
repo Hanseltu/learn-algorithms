@@ -9,7 +9,7 @@ typedef struct tag_stu
 	char name[20];
 }stu;
 
-static stu arr_stu[] = 
+static stu arr_stu[] =
 {
 	{10, "sky"},
 	{20, "jody"},
@@ -26,31 +26,31 @@ static stu arr_stu[] =
  * @date 2013/11/07
  */
 // 创建栈
-int create_dlink_stack() 
+int create_dlink_stack()
 {
 	return create_dlink();
 }
 
 // 销毁栈
-int destroy_dlink_stack() 
+int destroy_dlink_stack()
 {
 	return destroy_dlink();
 }
 
 // 将val添加到栈中
-int push(int val) 
+int push(int val)
 {
 	return dlink_insert_first(val);
 }
 
 // 返回“栈顶元素值”
-int peek() 
+int peek()
 {
 	return dlink_get_first();
 }
 
 // 返回“栈顶元素值”，并删除“栈顶元素”
-int pop() 
+int pop()
 {
 	int ret = peek();
 	dlink_delete_first();
@@ -58,7 +58,7 @@ int pop()
 }
 
 // 返回“栈”的大小
-int size() 
+int size()
 {
 	return dlink_size();
 }
@@ -75,7 +75,7 @@ void print_dlink_stack()
 	return print_dlink();
 }
 
-void main()
+int main()
 {
 	stu *pval=NULL;
 	INIT_LIST_HEAD();
@@ -104,4 +104,5 @@ void main()
 
 	// 销毁栈
 	destroy_dlink_stack();
+    return 0;
 }
