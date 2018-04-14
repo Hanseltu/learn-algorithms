@@ -53,12 +53,13 @@ int is_empty()
 	return dlink_is_empty();
 }
 
-// 打印“栈”
+/* 打印“栈”-----有问题
 void print_dlink_stack()
 {
 	return print_dlink();
 }
-
+*
+*/
 int main()
 {
 	int tmp=0;
@@ -84,7 +85,7 @@ int main()
 	//print_dlink_stack();	// 打印栈
 
 	push(40);
-	print_dlink_stack();	// 打印栈
+	//print_dlink_stack();	// 打印栈
 
 	// 销毁栈
 	destroy_dlink_stack();

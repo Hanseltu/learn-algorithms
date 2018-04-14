@@ -86,7 +86,7 @@ int main()
 
 	// 将10, 20, 30 依次推入栈中
 	int i=0;
-	for (i=0; i<ARR_STU_SIZE-1; i++)
+	for (i=0; i< (int)ARR_STU_SIZE-1; i++)
 	{
 		push(&arr_stu[i]);
 	}
@@ -96,7 +96,7 @@ int main()
 	//print_stu(pval) ;
 
 	// 只将“栈顶”赋值给pval，不删除该元素.
-	pval = peek();
+	pval =(stu*) peek();
 	//print_stu(pval) ;
 
 	push(&arr_stu[ARR_STU_SIZE-1]);
@@ -105,7 +105,7 @@ int main()
 	// 打印栈中的所有元素
 	while (!is_empty())
 	{
-		pval = pop();
+		pval =(stu*)pop();
 		print_stu(pval) ;
 	}
 

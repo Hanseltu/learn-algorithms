@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <malloc.h>
 
@@ -6,8 +5,9 @@
 /**
  * C 语言实现的双向链表，能存储任意数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 // 双向链表节点
 typedef struct tag_node
