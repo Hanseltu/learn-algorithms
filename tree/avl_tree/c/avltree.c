@@ -1,8 +1,9 @@
 /**
  * AVL树(C语言): C语言实现的AVL树。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -90,7 +91,7 @@ Node* iterative_avltree_search(AVLTree x, Type key)
     return x;
 }
 
-/* 
+/*
  * 查找最小结点：返回tree为根结点的AVL树的最小结点。
  */
 Node* avltree_minimum(AVLTree tree)
@@ -102,8 +103,8 @@ Node* avltree_minimum(AVLTree tree)
         tree = tree->left;
     return tree;
 }
- 
-/* 
+
+/*
  * 查找最大结点：返回tree为根结点的AVL树的最大结点。
  */
 Node* avltree_maximum(AVLTree tree)
@@ -200,7 +201,7 @@ static Node* avltree_create_node(Type key, Node *left, Node* right)
     return p;
 }
 
-/* 
+/*
  * 将结点插入到AVL树中，并返回根节点
  *
  * 参数说明：
@@ -211,7 +212,7 @@ static Node* avltree_create_node(Type key, Node *left, Node* right)
  */
 Node* avltree_insert(AVLTree tree, Type key)
 {
-    if (tree == NULL) 
+    if (tree == NULL)
     {
         // 新建节点
         tree = avltree_create_node(key, NULL, NULL);
@@ -255,7 +256,7 @@ Node* avltree_insert(AVLTree tree, Type key)
     return tree;
 }
 
-/* 
+/*
  * 删除结点(z)，返回根节点
  *
  * 参数说明：
@@ -337,7 +338,7 @@ static Node* delete_node(AVLTree tree, Node *z)
     return tree;
 }
 
-/* 
+/*
  * 删除结点(key是节点值)，返回根节点
  *
  * 参数说明：
@@ -348,14 +349,14 @@ static Node* delete_node(AVLTree tree, Node *z)
  */
 Node* avltree_delete(AVLTree tree, Type key)
 {
-    Node *z; 
+    Node *z;
 
     if ((z = avltree_search(tree, key)) != NULL)
         tree = delete_node(tree, z);
     return tree;
 }
 
-/* 
+/*
  * 销毁AVL树
  */
 void destroy_avltree(AVLTree tree)
@@ -375,7 +376,7 @@ void destroy_avltree(AVLTree tree)
  * 打印"AVL树"
  *
  * tree       -- AVL树的节点
- * key        -- 节点的键值 
+ * key        -- 节点的键值
  * direction  --  0，表示该节点是根节点;
  *               -1，表示该节点是它的父结点的左孩子;
  *                1，表示该节点是它的父结点的右孩子。
@@ -385,7 +386,7 @@ void print_avltree(AVLTree tree, Type key, int direction)
     if(tree != NULL)
     {
         if(direction==0)    // tree是根节点
-            printf("%2d is root\n", tree->key, key);
+            printf("%2d is root \n", tree->key);
         else                // tree是分支节点
             printf("%2d is %2d's %6s child\n", tree->key, key, direction==1?"right" : "left");
 

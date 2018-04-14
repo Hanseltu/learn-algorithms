@@ -1,8 +1,9 @@
 /**
  * C 语言: 伸展树测试程序
  *
- * @author skywang
- * @date 2014/02/03
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -11,7 +12,7 @@
 static int arr[]= {10,50,40,30,20,60};
 #define TBL_SIZE(a) ( (sizeof(a)) / (sizeof(a[0])) )
 
-void main()
+int main()
 {
 	int i, ilen;
 	SplayTree root=NULL;
@@ -47,4 +48,5 @@ void main()
 
 	// 销毁伸展树
 	destroy_splaytree(root);
+    return 0;
 }

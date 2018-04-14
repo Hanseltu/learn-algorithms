@@ -1,8 +1,9 @@
 /**
  * SplayTree伸展树(C语言): C语言实现的伸展树。
  *
- * @author skywang
- * @date 2014/02/03
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -78,7 +79,7 @@ Node* iterative_splaytree_search(SplayTree x, Type key)
 	return x;
 }
 
-/* 
+/*
  * 查找最小结点：返回tree为根结点的伸展树的最小结点。
  */
 Node* splaytree_minimum(SplayTree tree)
@@ -90,8 +91,8 @@ Node* splaytree_minimum(SplayTree tree)
 		tree = tree->left;
 	return tree;
 }
- 
-/* 
+
+/*
  * 查找最大结点：返回tree为根结点的伸展树的最大结点。
  */
 Node* splaytree_maximum(SplayTree tree)
@@ -104,7 +105,7 @@ Node* splaytree_maximum(SplayTree tree)
 	return tree;
 }
 
-/* 
+/*
  * 旋转key对应的节点为根节点，并返回根节点。
  *
  * 注意：
@@ -121,7 +122,7 @@ Node* splaytree_splay(SplayTree tree, Type key)
 {
     Node N, *l, *r, *c;
 
-    if (tree == NULL) 
+    if (tree == NULL)
         return tree;
 
     N.left = N.right = NULL;
@@ -139,7 +140,7 @@ Node* splaytree_splay(SplayTree tree, Type key)
                 tree->left = c->right;
                 c->right = tree;
                 tree = c;
-                if (tree->left == NULL) 
+                if (tree->left == NULL)
                     break;
             }
             r->left = tree;                               /* 02, link right */
@@ -148,15 +149,15 @@ Node* splaytree_splay(SplayTree tree, Type key)
         }
 		else if (key > tree->key)
         {
-            if (tree->right == NULL) 
+            if (tree->right == NULL)
                 break;
-            if (key > tree->right->key) 
+            if (key > tree->right->key)
             {
                 c = tree->right;                          /* 03, rotate left */
                 tree->right = c->left;
                 c->left = tree;
                 tree = c;
-                if (tree->right == NULL) 
+                if (tree->right == NULL)
                     break;
             }
             l->right = tree;                              /* 04, link left */
@@ -177,7 +178,7 @@ Node* splaytree_splay(SplayTree tree, Type key)
     return tree;
 }
 
-/* 
+/*
  * 将结点插入到伸展树中(不旋转)
  *
  * 参数说明：
@@ -240,7 +241,7 @@ static Node* create_splaytree_node(Type key, Node *left, Node* right)
 	return p;
 }
 
-/* 
+/*
  * 新建结点(key)，然后将其插入到伸展树中，并将插入节点旋转为根节点
  *
  * 参数说明：
@@ -263,7 +264,7 @@ Node* insert_splaytree(SplayTree tree, Type key)
 	tree = splaytree_splay(tree, key);
 }
 
-/* 
+/*
  * 删除结点(key为节点的键值)，并返回根节点。
  *
  * 参数说明：
@@ -277,7 +278,7 @@ Node* delete_splaytree(SplayTree tree, Type key)
 {
     Node *x;
 
-    if (tree == NULL) 
+    if (tree == NULL)
         return NULL;
 
 	// 查找键值为key的节点，找不到的话直接返回。
@@ -322,7 +323,7 @@ void destroy_splaytree(SplayTree tree)
  * 打印"伸展树"
  *
  * tree       -- 伸展树的节点
- * key        -- 节点的键值 
+ * key        -- 节点的键值
  * direction  --  0，表示该节点是根节点;
  *               -1，表示该节点是它的父结点的左孩子;
  *                1，表示该节点是它的父结点的右孩子。

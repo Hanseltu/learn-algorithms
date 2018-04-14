@@ -3,8 +3,9 @@
  *
  * 构造Huffman树时，使用到了最小堆。
  *
- * @author skywang
- * @date 2014/03/25
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -100,18 +101,18 @@ HuffmanNode* create_huffman(Type a[], int size)
 
 	// 建立数组a对应的最小堆
     create_minheap(a, size);
- 
+
     for(i=0; i<size-1; i++)
-    {   
+    {
         left = dump_from_minheap();  // 最小节点是左孩子
         right = dump_from_minheap(); // 其次才是右孩子
- 
+
 		// 新建parent节点，左右孩子分别是left/right；
 		// parent的大小是左右孩子之和
         parent = huffman_create_node(left->key+right->key, left, right, NULL);
         left->parent = parent;
 		right->parent = parent;
- 
+
 
 		// 将parent节点数据拷贝到"最小堆"中
 		if (dump_to_minheap(parent)!=0)
@@ -121,7 +122,7 @@ HuffmanNode* create_huffman(Type a[], int size)
 			parent = NULL;
 			break;
 		}
-    }   
+    }
 
 	// 销毁最小堆
 	destroy_minheap();
@@ -129,7 +130,7 @@ HuffmanNode* create_huffman(Type a[], int size)
 	return parent;
 }
 
-/* 
+/*
  * 销毁Huffman树
  */
 void destroy_huffman(HuffmanTree tree)
@@ -149,7 +150,7 @@ void destroy_huffman(HuffmanTree tree)
  * 打印"Huffman树"
  *
  * tree       -- Huffman树的节点
- * key        -- 节点的键值 
+ * key        -- 节点的键值
  * direction  --  0，表示该节点是根节点;
  *               -1，表示该节点是它的父结点的左孩子;
  *                1，表示该节点是它的父结点的右孩子。
@@ -159,7 +160,7 @@ void huffman_print(HuffmanTree tree, Type key, int direction)
     if(tree != NULL)
     {
         if(direction==0)    // tree是根节点
-            printf("%2d is root\n", tree->key, key);
+            printf("%2d is root \n", tree->key);
         else                // tree是分支节点
             printf("%2d is %2d's %6s child\n", tree->key, key, direction==1?"right" : "left");
 

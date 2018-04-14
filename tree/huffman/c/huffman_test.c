@@ -1,15 +1,16 @@
 /**
  * C 语言: Huffman树
  *
- * @author skywang
- * @date 2014/03/25
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 #include <stdio.h>
 #include "huffman.h"
 
 #define LENGTH(a) ( (sizeof(a)) / (sizeof(a[0])) )
 
-void main()
+int main()
 {
 	int a[]= {5,6,8,7,15};
 	int i,ilen=LENGTH(a);
@@ -37,4 +38,5 @@ void main()
 
 	// 销毁二叉树
 	destroy_huffman(root);
+    return 0;
 }

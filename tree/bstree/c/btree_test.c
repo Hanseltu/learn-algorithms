@@ -1,8 +1,9 @@
 /**
  * C 语言: 二叉查找树
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -11,7 +12,7 @@
 static int arr[]= {1,5,4,3,2,6};
 #define TBL_SIZE(a) ( (sizeof(a)) / (sizeof(a[0])) )
 
-void main()
+int main()
 {
 	int i, ilen;
 	BSTree root=NULL;
@@ -48,4 +49,5 @@ void main()
 
 	// 销毁二叉树
 	destroy_bstree(root);
+    return 0;
 }

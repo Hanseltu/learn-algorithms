@@ -8,7 +8,7 @@ typedef struct SplayTreeNode {
 	Type key;						// 关键字(键值)
 	struct SplayTreeNode *left;		// 左孩子
 	struct SplayTreeNode *right;	// 右孩子
-} Node, *SplayTree; 
+} Node, *SplayTree;
 
 // 前序遍历"伸展树"
 void preorder_splaytree(SplayTree tree);

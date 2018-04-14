@@ -1,8 +1,9 @@
 /**
  * C语言实现的红黑树(Red Black Tree)
  *
- * @author skywang
- * @date 2013/11/18
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -12,7 +13,7 @@
 #define CHECK_DELETE 0	// "删除"动作的检测开关(0，关闭；1，打开)
 #define LENGTH(a) ( (sizeof(a)) / (sizeof(a[0])) )
 
-void main()
+int main()
 {
     int a[] = {10, 40, 30, 60, 90, 70, 20, 50, 80};
 	int i, ilen=LENGTH(a);
@@ -69,4 +70,5 @@ void main()
 #endif
 
 	destroy_rbtree(root);
+    return 0;
 }

@@ -1,8 +1,9 @@
 /**
  * C 语言: AVL树
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 #include <stdio.h>
 #include "avltree.h"
@@ -10,7 +11,7 @@
 static int arr[]= {3,2,1,4,5,6,7,16,15,14,13,12,11,10,8,9};
 #define TBL_SIZE(a) ( (sizeof(a)) / (sizeof(a[0])) )
 
-void main()
+int main()
 {
 	int i,ilen;
 	AVLTree root=NULL;
@@ -56,4 +57,5 @@ void main()
 
 	// 销毁二叉树
 	destroy_avltree(root);
+    return 0;
 }

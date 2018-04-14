@@ -1,8 +1,9 @@
 /**
  * 最小堆：为Huffman树服务的。
  *
- * @author skywang
- * @date 2014/03/25
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -12,8 +13,8 @@
 static HuffmanNode *m_heap;	// 最小堆的数组
 static int m_capacity;		// 总的容量
 static int m_size;			// 当前有效数据的数量
- 
-/* 
+
+/*
  * 最小堆的向下调整算法
  *
  * 注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
@@ -39,12 +40,12 @@ static void minheap_filterdown(int start, int end)
         {
             m_heap[c] = m_heap[l];
             c = l;
-            l = 2*l + 1;   
-        }       
-    }   
+            l = 2*l + 1;
+        }
+    }
     m_heap[c] = tmp;
 }
- 
+
 /*
  * 最小堆的向上调整算法(从start开始向上直到0，调整堆)
  *
@@ -56,7 +57,7 @@ static void minheap_filterdown(int start, int end)
 static void filter_up(int start)
 {
     int c = start;			// 当前节点(current)的位置
-    int p = (c-1)/2;		// 父(parent)结点的位置 
+    int p = (c-1)/2;		// 父(parent)结点的位置
     HuffmanNode tmp = m_heap[c];		// 当前节点(current)
 
     while(c > 0)
@@ -67,13 +68,13 @@ static void filter_up(int start)
         {
             m_heap[c] = m_heap[p];
             c = p;
-            p = (p-1)/2;   
-        }       
+            p = (p-1)/2;
+        }
     }
     m_heap[c] = tmp;
 }
-  
-/* 
+
+/*
  * 将node插入到二叉堆中
  *
  * 返回值：
@@ -85,7 +86,7 @@ int dump_to_minheap(HuffmanNode *node)
     // 如果"堆"已满，则返回
     if(m_size == m_capacity)
         return -1;
- 
+
     m_heap[m_size] = *node;     // 将"node的数据"全部复制到"数组末尾"
     filter_up(m_size);			// 向上调整堆
     m_size++;					// 堆的实际容量+1
@@ -103,7 +104,7 @@ static void swap_node(int i, int j)
 	m_heap[j] = tmp;
 }
 
-/* 
+/*
  * 新建一个节点，并将最小堆中最小节点的数据复制给该节点。
  * 然后除最小节点之外的数据重新构造成最小堆。
  *
@@ -125,12 +126,12 @@ HuffmanNode* dump_from_minheap()
 
 	swap_node(0, m_size-1);				// 交换"最小节点"和"最后一个节点"
     minheap_filterdown(0, m_size-2);	// 将m_heap[0...m_size-2]构造成一个最小堆
-	m_size--;						
+	m_size--;
 
 	return node;
 }
 
-/* 
+/*
  * 打印二叉堆
  *
  * 返回值：
@@ -144,7 +145,7 @@ void minheap_print()
 		printf("%d ", m_heap[i].key);
 }
 
-/* 
+/*
  * 创建最小堆
  *
  * 参数说明：
@@ -159,7 +160,7 @@ void create_minheap(Type a[], int size)
 	m_size = size;
 	m_capacity = size;
 	m_heap = (HuffmanNode *)malloc(sizeof(HuffmanNode)*size);
-	
+
 	// 初始化数组
     for(i=0; i<size; i++)
 	{
