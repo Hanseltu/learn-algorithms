@@ -2,18 +2,19 @@
 #include <stdio.h>
 #include <malloc.h>
 
+
 /**
- * c语言实现的双向链表
+ * C 语言实现的双向链表，能存储任意数据。
  *
  * @author skywang
- * @date   2013/11/07
+ * @date 2013/11/07
  */
 // 双向链表节点
-typedef struct tag_node 
+typedef struct tag_node
 {
 	struct tag_node *prev;
 	struct tag_node *next;
-	int value;
+	void* p;
 }node;
 
 // 表头。注意，表头不存放元素值！！！
@@ -22,7 +23,7 @@ static node *phead=NULL;
 static int  count=0;
 
 // 新建“节点”。成功，返回节点指针；否则，返回NULL。
-static node* create_node(int value)
+static node* create_node(void *pval)
 {
 	node *pnode=NULL;
 	pnode = (node *)malloc(sizeof(node));
@@ -33,8 +34,8 @@ static node* create_node(int value)
 	}
 	// 默认的，pnode的前一节点和后一节点都指向它自身
 	pnode->prev = pnode->next = pnode;
-	// 节点的值为value
-	pnode->value = value;
+	// 节点的值为pval
+	pnode->p = pval;
 
 	return pnode;
 }
@@ -43,7 +44,7 @@ static node* create_node(int value)
 int create_dlink()
 {
 	// 创建表头
-	phead = create_node(-1);
+	phead = create_node(NULL);
 	if (!phead)
 		return -1;
 
@@ -65,11 +66,11 @@ int dlink_size() {
 }
 
 // 获取“双向链表中第index位置的节点”
-static node* get_node(int index) 
+static node* get_node(int index)
 {
 	if (index<0 || index>=count)
 	{
-		printf("%s failed! the index in out of bound!\n", __func__);
+		printf("%s failed! index out of bound!\n", __func__);
 		return NULL;
 	}
 
@@ -78,11 +79,9 @@ static node* get_node(int index)
 	{
 		int i=0;
 		node *pnode=phead->next;
-		while ((i++) < index) 
+		while ((i++) < index)
 			pnode = pnode->next;
 
-//		printf("%s %d i=%d, pnode->value=%d\n", 
-//				__func__, __LINE__, i, pnode->value);
 		return pnode;
 	}
 
@@ -90,66 +89,78 @@ static node* get_node(int index)
 	int j=0;
 	int rindex = count - index - 1;
 	node *rnode=phead->prev;
-	while ((j++) < rindex) 
+	while ((j++) < rindex)
 		rnode = rnode->prev;
 
-//	printf("%s %d j=%d, rnode->value=%d\n", 
-//			__func__, __LINE__, j, rnode->value);
 	return rnode;
 }
 
 // 获取“第一个节点”
-static node* get_first_node() 
+static node* get_first_node()
 {
 	return get_node(0);
 }
 
 // 获取“最后一个节点”
-static node* get_last_node() 
+static node* get_last_node()
 {
 	return get_node(count-1);
 }
 
-// 获取“双向链表中第index位置的元素的值”。成功，返回节点值；否则，返回-1。
-int dlink_get(int index)
+// 获取“双向链表中第index位置的元素”。成功，返回节点值；否则，返回-1。
+void* dlink_get(int index)
 {
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 	{
 		printf("%s failed!\n", __func__);
-		return -1;
+		return NULL;
 	}
 
-	return pindex->value;
+	return pindex->p;
 
 }
 
 // 获取“双向链表中第1个元素的值”
-int dlink_get_first()
+void* dlink_get_first()
 {
 	return dlink_get(0);
 }
 
 // 获取“双向链表中最后1个元素的值”
-int dlink_get_last()
+void* dlink_get_last()
 {
 	return dlink_get(count-1);
 }
 
-// 将“value”插入到index位置。成功，返回0；否则，返回-1。
-int dlink_insert(int index, int value) 
+// 将“pval”插入到表头位置
+int dlink_insert_first(void *pval)
+{
+	node *pnode=create_node(pval);
+	if (!pnode)
+		return -1;
+
+	pnode->prev = phead;
+	pnode->next = phead->next;
+	phead->next->prev = pnode;
+	phead->next = pnode;
+	count++;
+	return 0;
+}
+// 将“pval”插入到index位置。成功，返回0；否则，返回-1。
+int dlink_insert(int index, void* pval)
 {
 	// 插入表头
 	if (index==0)
-		return dlink_insert_first(value);
+		return dlink_insert_first(pval);
 
 	// 获取要插入的位置对应的节点
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 		return -1;
 
 	// 创建“节点”
-	node *pnode=create_node(value);
+	node *pnode=create_node(pval);
 	if (!pnode)
 		return -1;
 
@@ -163,28 +174,14 @@ int dlink_insert(int index, int value)
 	return 0;
 }
 
-// 将“value”插入到表头位置
-int dlink_insert_first(int value) 
+
+// 将“pval”插入到末尾位置
+int dlink_append_last(void *pval)
 {
-	node *pnode=create_node(value);
+	node *pnode=create_node(pval);
 	if (!pnode)
 		return -1;
 
-	pnode->prev = phead;
-	pnode->next = phead->next;
-	phead->next->prev = pnode;
-	phead->next = pnode;
-	count++;
-	return 0;
-}
-
-// 将“value”插入到末尾位置
-int dlink_append_last(int value) 
-{
-	node *pnode=create_node(value);
-	if (!pnode)
-		return -1;
-	
 	pnode->next = phead;
 	pnode->prev = phead->prev;
 	phead->prev->next = pnode;
@@ -197,7 +194,7 @@ int dlink_append_last(int value)
 int dlink_delete(int index)
 {
 	node *pindex=get_node(index);
-	if (!pindex) 
+	if (!pindex)
 	{
 		printf("%s failed! the index in out of bound!\n", __func__);
 		return -1;
@@ -209,16 +206,16 @@ int dlink_delete(int index)
 	count--;
 
 	return 0;
-}	
+}
 
 // 删除第一个节点
-int dlink_delete_first() 
+int dlink_delete_first()
 {
 	return dlink_delete(0);
 }
 
 // 删除组后一个节点
-int dlink_delete_last() 
+int dlink_delete_last()
 {
 	return dlink_delete(count-1);
 }
@@ -246,22 +243,4 @@ int destroy_dlink()
 	count = 0;
 
 	return 0;
-}
-
-// 打印“双向链表”
-void print_dlink()
-{
-	if (count==0 || (!phead))
-	{
-		printf("stack is Empty\n");
-		return ;
-	}
-
-	printf("stack size()=%d\n", count);
-	node *pnode=phead->next;
-	while(pnode != phead)
-	{
-		printf("%d\n", pnode->value);
-		pnode = pnode->next;
-	}
 }

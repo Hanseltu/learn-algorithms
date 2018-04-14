@@ -5,35 +5,36 @@
 /**
  * C 语言: 双向链表实现栈，只能存储int数据。
  *
- * @author skywang
- * @date 2013/11/07
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 // 创建栈
-int create_dlink_stack() 
+int create_dlink_stack()
 {
 	return create_dlink();
 }
 
 // 销毁栈
-int destroy_dlink_stack() 
+int destroy_dlink_stack()
 {
 	return destroy_dlink();
 }
 
 // 将val添加到栈中
-int push(int val) 
+int push(int val)
 {
 	return dlink_insert_first(val);
 }
 
 // 返回“栈顶元素值”
-int peek() 
+int peek()
 {
 	return dlink_get_first();
 }
 
 // 返回“栈顶元素值”，并删除“栈顶元素”
-int pop() 
+int pop()
 {
 	int ret = peek();
 	dlink_delete_first();
@@ -41,7 +42,7 @@ int pop()
 }
 
 // 返回“栈”的大小
-int size() 
+int size()
 {
 	return dlink_size();
 }
@@ -58,7 +59,7 @@ void print_dlink_stack()
 	return print_dlink();
 }
 
-void main()
+int main()
 {
 	int tmp=0;
 
@@ -87,4 +88,5 @@ void main()
 
 	// 销毁栈
 	destroy_dlink_stack();
+    return 0;
 }
