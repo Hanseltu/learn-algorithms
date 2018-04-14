@@ -77,7 +77,6 @@ void print_array_stack()
 	if (is_empty())
 	{
 		printf("stack is Empty\n");
-		return ;
 	}
 
 	printf("stack size()=%d\n", size());

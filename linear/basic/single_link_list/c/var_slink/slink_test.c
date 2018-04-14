@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "/home/haoxin/github/learn-algorithms/linear/basic/double_link_list/c/var_dlink/double_link.h"
+#include "double_link.h"
 
 /**
  * C 语言实现的双向链表的测试程序。
@@ -45,7 +45,7 @@ void int_test()
 
 void string_test()
 {
-	char* sarr[4] = {"ten", "twenty", "thirty", "forty"};
+	 char* sarr[4] = {"ten", "twenty", "thirty", "forty"};
 
 	printf("\n----%s----\n", __func__);
 	create_dlink();		// 创建双向链表

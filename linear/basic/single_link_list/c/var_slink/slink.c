@@ -12,7 +12,7 @@
 
 // 单向链表的“节点”
 struct node {
-	void* p;
+	int p;
 	struct node* next;
 };
 
@@ -20,7 +20,7 @@ struct node {
 static struct node *phead=NULL;
 
 // 创建节点，p为节点值
-static struct node* create_node(void *pval)
+static struct node* create_node(int pval)
 {
 	struct node *pnode=NULL;
 	pnode = (struct node*)malloc(sizeof(struct node));
@@ -45,7 +45,7 @@ static void destroy_single_link()
 }
 
 // 将pval插入到链表的表头位置
-static struct node* push(void *pval)
+static struct node* push(int pval)
 {
 	struct node *pnode = NULL;
 
@@ -57,15 +57,15 @@ static struct node* push(void *pval)
 }
 
 // 删除链表的表头
-static void* pop()
+static int pop()
 {
 	if (!phead)
 	{
 		printf("remove failed! link is empty!");
-		return -1;
+		return 0;
 	}
 
-	void* pret;
+	int pret;
 	struct node *pnode;
 	pret = phead->p;
 	pnode = phead;
@@ -76,12 +76,12 @@ static void* pop()
 }
 
 // 返回链表的表头节点的值
-static void* peek()
+static int peek()
 {
 	if (!phead)
 	{
 		printf("peek failed! link is empty!");
-		return NULL;
+		return 0;
 	}
 
 	return phead->p;
@@ -107,12 +107,12 @@ static int is_empty()
 }
 
 // 打印“栈”
-static void print_single_link()
+static int print_single_link()
 {
 	if (is_empty())
 	{
 		printf("stack is Empty\n");
-		return ;
+		return 0 ;
 	}
 
 	printf("stack size()=%d\n", size());
@@ -125,6 +125,7 @@ static void print_single_link()
 		phead = phead->next;
 		free(pnode);
 	}
+    return 0;
 }
 
 int main()
