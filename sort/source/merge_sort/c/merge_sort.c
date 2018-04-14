@@ -1,8 +1,9 @@
 /**
  * 归并排序：C 语言
  *
- * @author skywang
- * @date 2014/03/12
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -117,7 +118,7 @@ void merge_sort_down2up(int a[], int len)
         merge_groups(a, len, n);
 }
 
-void main()
+int main()
 {
 	int i;
 	int a[] = {80,30,60,40,20,10,50,70};
@@ -135,4 +136,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

@@ -1,8 +1,9 @@
 /**
  * 基数排序：C 语言
  *
- * @author skywang
- * @date 2014/03/15
+ * @author Hanseltu
+ *
+ * @date 2018/4/14
  */
 
 #include <stdio.h>
@@ -84,7 +85,7 @@ void radix_sort(int a[], int n)
         count_sort(a, n, exp);
 }
 
-void main()
+int main()
 {
 	int i;
 	int a[] = {53, 3, 542, 748, 14, 214, 154, 63, 616};
@@ -101,4 +102,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

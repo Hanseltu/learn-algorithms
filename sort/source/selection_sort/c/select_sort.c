@@ -1,8 +1,10 @@
 /**
  * 选择排序：C 语言
  *
- * @author skywang
- * @date 2014/03/11
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
+ *
  */
 
 #include <stdio.h>
@@ -42,7 +44,7 @@ void select_sort(int a[], int n)
 	}
 }
 
-void main()
+int main()
 {
 	int i;
 	int a[] = {20,40,30,10,60,50};
@@ -59,4 +61,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

@@ -1,8 +1,9 @@
 /**
  * 希尔排序：C 语言
  *
- * @author skywang
- * @date 2014/03/11
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -27,7 +28,7 @@ void shell_sort1(int a[], int n)
 		// 共gap个组，对每一组都执行直接插入排序
         for (i = 0 ;i < gap; i++)
 		{
-			for (j = i + gap; j < n; j += gap) 
+			for (j = i + gap; j < n; j += gap)
 			{
 				// 如果a[j] < a[j-gap]，则寻找a[j]位置，并将后面数据的位置都后移。
 				if (a[j] < a[j - gap])
@@ -62,7 +63,7 @@ void group_sort(int a[], int n, int i,int gap)
 {
 	int j;
 
-	for (j = i + gap; j < n; j += gap) 
+	for (j = i + gap; j < n; j += gap)
 	{
 		// 如果a[j] < a[j-gap]，则寻找a[j]位置，并将后面数据的位置都后移。
 		if (a[j] < a[j - gap])
@@ -99,7 +100,7 @@ void shell_sort2(int a[], int n)
     }
 }
 
-void main()
+int main()
 {
 	int i;
 	int a[] = {80,30,60,40,20,10,50,70};
@@ -117,4 +118,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

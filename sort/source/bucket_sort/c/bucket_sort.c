@@ -1,8 +1,8 @@
 /**
  * 桶排序：C 语言
  *
- * @author skywang
- * @date 2014/03/13
+ * @author Hanseltu
+ * @date 2018/4/14
  */
 
 #include <stdio.h>
@@ -34,18 +34,18 @@ void bucket_sort(int a[], int n, int max)
     memset(buckets, 0, max*sizeof(int));
 
 	// 1. 计数
-    for(i = 0; i < n; i++) 
-        buckets[a[i]]++; 
+    for(i = 0; i < n; i++)
+        buckets[a[i]]++;
 
 	// 2. 排序
-	for (i = 0, j = 0; i < max; i++) 
+	for (i = 0, j = 0; i < max; i++)
 		while( (buckets[i]--) >0 )
 			a[j++] = i;
 
 	free(buckets);
 }
 
-void main()
+int  main()
 {
 	int i;
 	int a[] = {8,2,3,4,3,6,6,3,9};
@@ -62,4 +62,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

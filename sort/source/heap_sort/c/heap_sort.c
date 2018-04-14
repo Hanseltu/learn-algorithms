@@ -1,8 +1,8 @@
 /**
  * 堆排序：C 语言
  *
- * @author skywang
- * @date 2014/03/12
+ * @author Hanseltu
+ * @date 2018/4/14
  */
 
 #include <stdio.h>
@@ -11,7 +11,7 @@
 #define LENGTH(array) ( (sizeof(array)) / (sizeof(array[0])) )
 #define swap(a,b) (a^=b,b^=a,a^=b)
 
-/* 
+/*
  * (最大)堆的向下调整算法
  *
  * 注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
@@ -68,7 +68,7 @@ void heap_sort_asc(int a[], int n)
     }
 }
 
-/* 
+/*
  * (最小)堆的向下调整算法
  *
  * 注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
@@ -125,7 +125,7 @@ void heap_sort_desc(int a[], int n)
     }
 }
 
-void main()
+int main()
 {
 	int i;
 	int a[] = {20,30,90,40,70,110,60,10,100,50,80};
@@ -136,11 +136,12 @@ void main()
 		printf("%d ", a[i]);
 	printf("\n");
 
-	heap_sort_asc(a, ilen);			// 升序排列
-	//heap_sort_desc(a, ilen);		// 降序排列
+	//heap_sort_asc(a, ilen);			// 升序排列
+	heap_sort_desc(a, ilen);		// 降序排列
 
 	printf("after  sort:");
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }

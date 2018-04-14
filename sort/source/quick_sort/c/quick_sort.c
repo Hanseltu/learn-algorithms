@@ -1,8 +1,9 @@
 /**
  * 快速排序：C 语言
  *
- * @author skywang
- * @date 2014/03/11
+ * @author Hanseltu
+ *
+ * @date 2018/04/14
  */
 
 #include <stdio.h>
@@ -44,7 +45,7 @@ void quick_sort(int a[], int l, int r)
     }
 }
 
-void main()
+int main()
 {
 	int i;
 	//int a[] = {30,40,60,10,20,50};
@@ -62,4 +63,5 @@ void main()
 	for (i=0; i<ilen; i++)
 		printf("%d ", a[i]);
 	printf("\n");
+    return 0;
 }
