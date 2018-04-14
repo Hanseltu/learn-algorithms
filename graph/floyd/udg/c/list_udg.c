@@ -1,8 +1,9 @@
 /**
  * C: Floyd算法获取最短路径(邻接表)
  *
- * @author skywang
- * @date 2014/04/25
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -98,7 +99,7 @@ LGraph* create_lgraph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
- 
+
     if ((pG=(LGraph*)malloc(sizeof(LGraph))) == NULL )
         return NULL;
     memset(pG, 0, sizeof(LGraph));
@@ -162,18 +163,18 @@ static char  gVexs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 // 边
 static EData gEdges[] = {
   // 起点 终点 权
-    {'A', 'B', 12}, 
-    {'A', 'F', 16}, 
-    {'A', 'G', 14}, 
-    {'B', 'C', 10}, 
-    {'B', 'F',  7}, 
-    {'C', 'D',  3}, 
-    {'C', 'E',  5}, 
-    {'C', 'F',  6}, 
-    {'D', 'E',  4}, 
-    {'E', 'F',  2}, 
-    {'E', 'G',  8}, 
-    {'F', 'G',  9}, 
+    {'A', 'B', 12},
+    {'A', 'F', 16},
+    {'A', 'G', 14},
+    {'B', 'C', 10},
+    {'B', 'F',  7},
+    {'C', 'D',  3},
+    {'C', 'E',  5},
+    {'C', 'F',  6},
+    {'D', 'E',  4},
+    {'E', 'F',  2},
+    {'E', 'G',  8},
+    {'F', 'G',  9},
 };
 
 /*
@@ -242,7 +243,7 @@ LGraph* create_example_lgraph()
  */
 static void DFS(LGraph G, int i, int *visited)
 {
-    int w;
+    // int w;
     ENode *node;
 
     visited[i] = 1;
@@ -301,7 +302,7 @@ void BFS(LGraph G)
             printf("%c ", G.vexs[i].data);
             queue[rear++] = i;  // 入队列
         }
-        while (head != rear) 
+        while (head != rear)
         {
             j = queue[head++];  // 出队列
             node = G.vexs[j].first_edge;
@@ -326,7 +327,7 @@ void BFS(LGraph G)
  */
 void print_lgraph(LGraph G)
 {
-    int i,j;
+    int i;
     ENode *node;
 
     printf("List Graph:\n");
@@ -447,12 +448,12 @@ void prim(LGraph G, int start)
     printf("\n");
 }
 
-/* 
+/*
  * 获取图中的边
  */
 EData* get_edges(LGraph G)
 {
-    int i,j;
+    int i;
     int index=0;
     ENode *node;
     EData *edges;
@@ -477,7 +478,7 @@ EData* get_edges(LGraph G)
     return edges;
 }
 
-/* 
+/*
  * 对边按照权值大小进行排序(由小到大)
  */
 void sorted_edges(EData* edges, int elen)
@@ -568,7 +569,7 @@ void dijkstra(LGraph G, int vs, int prev[], int dist[])
     int min;
     int tmp;
     int flag[MAX];      // flag[i]=1表示"顶点vs"到"顶点i"的最短路径已成功获取。
-    
+
     // 初始化
     for (i = 0; i < G.vexnum; i++)
     {
@@ -635,7 +636,7 @@ void floyd(LGraph G, int path[][MAX], int dist[][MAX])
     // 初始化
     for (i = 0; i < G.vexnum; i++) {
         for (j = 0; j < G.vexnum; j++) {
-            dist[i][j] = get_weight(G, i, j);// "顶点i"到"顶点j"的路径长度为"i到j的权值"。 
+            dist[i][j] = get_weight(G, i, j);// "顶点i"到"顶点j"的路径长度为"i到j的权值"。
             path[i][j] = j;                  // "顶点i"到"顶点j"的最短路径是经过顶点j。
         }
     }
@@ -670,12 +671,12 @@ void floyd(LGraph G, int path[][MAX], int dist[][MAX])
     }
 }
 
-void main()
+int main()
 {
-    int prev[MAX] = {0};
-    int dist[MAX] = {0};
-    int path[MAX][MAX] = {0};    // 用于保存floyd路径
-    int floy[MAX][MAX] = {0};    // 用于保存floyd长度
+   // int prev[MAX] = {0};
+    //int dist[MAX] = {0};
+    int path[MAX][MAX] = {{0}};    // 用于保存floyd路径
+    int floy[MAX][MAX] = {{0}};    // 用于保存floyd长度
     LGraph* pG;
 
     // 自定义"图"(自己输入数据)
@@ -694,4 +695,5 @@ void main()
 
     // floyd算法获取各个顶点之间的最短距离
     floyd(*pG, path, floy);
+    return 0;
 }

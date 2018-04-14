@@ -1,9 +1,10 @@
 /**
  * C: 无回路有向图(Directed Acyclic Graph)的拓扑排序
- *    该DAG图是通过邻接表实现的。  
+ *    该DAG图是通过邻接表实现的。
  *
- * @author skywang
- * @date 2014/04/22
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -83,7 +84,8 @@ LGraph* create_lgraph()
     char c1, c2;
     int v, e;
     int i, p1, p2;
-    ENode *node1, *node2;
+    ENode *node1;
+    //ENode *node2;
     LGraph* pG;
 
     // 输入"顶点数"和"边数"
@@ -96,7 +98,7 @@ LGraph* create_lgraph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
- 
+
     pG = (LGraph*)malloc(sizeof(LGraph));
     assert(pG!=NULL);
 
@@ -144,17 +146,18 @@ LGraph* create_example_lgraph()
     char c1, c2;
     char vexs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
     char edges[][2] = {
-        {'A', 'G'}, 
-        {'B', 'A'}, 
-        {'B', 'D'}, 
-        {'C', 'F'}, 
-        {'C', 'G'}, 
-        {'D', 'E'}, 
-        {'D', 'F'}}; 
+        {'A', 'G'},
+        {'B', 'A'},
+        {'B', 'D'},
+        {'C', 'F'},
+        {'C', 'G'},
+        {'D', 'E'},
+        {'D', 'F'}};
     int vlen = LENGTH(vexs);
     int elen = LENGTH(edges);
     int i, p1, p2;
-    ENode *node1, *node2;
+    ENode *node1;
+    //ENode *node2;
     LGraph* pG;
 
     if ((pG=(LGraph*)malloc(sizeof(LGraph))) == NULL )
@@ -200,7 +203,7 @@ LGraph* create_example_lgraph()
  */
 static void DFS(LGraph G, int i, int *visited)
 {
-    int w;
+    //int w;
     ENode *node;
 
     visited[i] = 1;
@@ -268,7 +271,7 @@ void BFS(LGraph G)
             printf("%c ", G.vexs[i].data);
             queue[rear++] = i;  // 入队列
         }
-        while (head != rear) 
+        while (head != rear)
         {
             j = queue[head++];  // 出队列
             node = G.vexs[j].first_edge;
@@ -400,7 +403,7 @@ void print_lgraph(LGraph G)
     }
 }
 
-void main()
+int main()
 {
     LGraph* pG;
 
@@ -414,4 +417,5 @@ void main()
     //DFS_traverse(*pG);    // 深度优先搜索
     //BFS(*pG);             // 广度优先搜索
     topological_sort(*pG);  // 拓扑排序
+    return 0;
 }

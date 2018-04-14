@@ -1,8 +1,9 @@
 /**
  * C: 邻接表表示的"有向图(List Directed Graph)"
  *
- * @author skywang
- * @date 2014/04/18
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -82,7 +83,8 @@ LGraph* create_lgraph()
     char c1, c2;
     int v, e;
     int i, p1, p2;
-    ENode *node1, *node2;
+    ENode *node1;
+    //ENode *node2;
     LGraph* pG;
 
     // 输入"顶点数"和"边数"
@@ -95,7 +97,7 @@ LGraph* create_lgraph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
- 
+
     if ((pG=(LGraph*)malloc(sizeof(LGraph))) == NULL )
         return NULL;
     memset(pG, 0, sizeof(LGraph));
@@ -142,19 +144,20 @@ LGraph* create_example_lgraph()
     char c1, c2;
     char vexs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
     char edges[][2] = {
-        {'A', 'B'}, 
-        {'B', 'C'}, 
-        {'B', 'E'}, 
-        {'B', 'F'}, 
-        {'C', 'E'}, 
-        {'D', 'C'}, 
-        {'E', 'B'}, 
-        {'E', 'D'}, 
-        {'F', 'G'}}; 
+        {'A', 'B'},
+        {'B', 'C'},
+        {'B', 'E'},
+        {'B', 'F'},
+        {'C', 'E'},
+        {'D', 'C'},
+        {'E', 'B'},
+        {'E', 'D'},
+        {'F', 'G'}};
     int vlen = LENGTH(vexs);
     int elen = LENGTH(edges);
     int i, p1, p2;
-    ENode *node1, *node2;
+    ENode *node1;
+    //ENode *node2;
     LGraph* pG;
 
 
@@ -199,7 +202,7 @@ LGraph* create_example_lgraph()
  */
 void print_lgraph(LGraph G)
 {
-    int i,j;
+    int i;
     ENode *node;
 
     printf("List Graph:\n");
@@ -216,7 +219,7 @@ void print_lgraph(LGraph G)
     }
 }
 
-void main()
+int main()
 {
     LGraph* pG;
 
@@ -227,4 +230,5 @@ void main()
 
     // 打印图
     print_lgraph(*pG);
+    return 0;
 }

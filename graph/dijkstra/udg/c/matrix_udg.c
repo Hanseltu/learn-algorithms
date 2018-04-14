@@ -1,8 +1,9 @@
 /**
  * C: Dijkstra算法获取最短路径(邻接矩阵)
  *
- * @author skywang
- * @date 2014/04/24
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -67,7 +68,7 @@ Graph* create_graph()
     int v, e;
     int i, j, weight, p1, p2;
     Graph* pG;
-    
+
     // 输入"顶点数"和"边数"
     printf("input vertex number: ");
     scanf("%d", &v);
@@ -78,7 +79,7 @@ Graph* create_graph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
-    
+
     if ((pG=(Graph*)malloc(sizeof(Graph))) == NULL )
         return NULL;
     memset(pG, 0, sizeof(Graph));
@@ -147,7 +148,7 @@ Graph* create_example_graph()
     int vlen = LENGTH(vexs);
     int i, j;
     Graph* pG;
-    
+
     // 输入"顶点数"和"边数"
     if ((pG=(Graph*)malloc(sizeof(Graph))) == NULL )
         return NULL;
@@ -212,8 +213,8 @@ static int next_vertix(Graph G, int v, int w)
  * 深度优先搜索遍历图的递归实现
  */
 static void DFS(Graph G, int i, int *visited)
-{                                   
-    int w; 
+{
+    int w;
 
     visited[i] = 1;
     printf("%c ", G.vexs[i]);
@@ -223,7 +224,7 @@ static void DFS(Graph G, int i, int *visited)
         if (!visited[w])
             DFS(G, w, visited);
     }
-       
+
 }
 
 /*
@@ -271,7 +272,7 @@ void BFS(Graph G)
             printf("%c ", G.vexs[i]);
             queue[rear++] = i;  // 入队列
         }
-        while (head != rear) 
+        while (head != rear)
         {
             j = queue[head++];  // 出队列
             for (k = first_vertex(G, j); k >= 0; k = next_vertix(G, j, k)) //k是为访问的邻接顶点
@@ -387,7 +388,7 @@ void prim(Graph G, int start)
     printf("\n");
 }
 
-/* 
+/*
  * 获取图中的边
  */
 EData* get_edges(Graph G)
@@ -414,7 +415,7 @@ EData* get_edges(Graph G)
     return edges;
 }
 
-/* 
+/*
  * 对边按照权值大小进行排序(由小到大)
  */
 void sorted_edges(EData* edges, int elen)
@@ -505,7 +506,7 @@ void dijkstra(Graph G, int vs, int prev[], int dist[])
     int min;
     int tmp;
     int flag[MAX];      // flag[i]=1表示"顶点vs"到"顶点i"的最短路径已成功获取。
-    
+
     // 初始化
     for (i = 0; i < G.vexnum; i++)
     {
@@ -554,7 +555,7 @@ void dijkstra(Graph G, int vs, int prev[], int dist[])
         printf("  shortest(%c, %c)=%d\n", G.vexs[vs], G.vexs[i], dist[i]);
 }
 
-void main()
+int main()
 {
     int prev[MAX] = {0};
     int dist[MAX] = {0};
@@ -573,4 +574,5 @@ void main()
 
     // dijkstra算法获取"第4个顶点"到其它各个顶点的最短距离
     dijkstra(*pG, 3, prev, dist);
+    return 0;
 }

@@ -1,8 +1,9 @@
 /**
  * C: prim算法生成最小生成树(邻接表)
  *
- * @author skywang
- * @date 2014/04/23
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -98,7 +99,7 @@ LGraph* create_lgraph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
- 
+
     if ((pG=(LGraph*)malloc(sizeof(LGraph))) == NULL )
         return NULL;
     memset(pG, 0, sizeof(LGraph));
@@ -162,18 +163,18 @@ static char  gVexs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 // 边
 static EData gEdges[] = {
   // 起点 终点 权
-    {'A', 'B', 12}, 
-    {'A', 'F', 16}, 
-    {'A', 'G', 14}, 
-    {'B', 'C', 10}, 
-    {'B', 'F',  7}, 
-    {'C', 'D',  3}, 
-    {'C', 'E',  5}, 
-    {'C', 'F',  6}, 
-    {'D', 'E',  4}, 
-    {'E', 'F',  2}, 
-    {'E', 'G',  8}, 
-    {'F', 'G',  9}, 
+    {'A', 'B', 12},
+    {'A', 'F', 16},
+    {'A', 'G', 14},
+    {'B', 'C', 10},
+    {'B', 'F',  7},
+    {'C', 'D',  3},
+    {'C', 'E',  5},
+    {'C', 'F',  6},
+    {'D', 'E',  4},
+    {'E', 'F',  2},
+    {'E', 'G',  8},
+    {'F', 'G',  9},
 };
 
 /*
@@ -242,7 +243,7 @@ LGraph* create_example_lgraph()
  */
 static void DFS(LGraph G, int i, int *visited)
 {
-    int w;
+    //int w;
     ENode *node;
 
     visited[i] = 1;
@@ -301,7 +302,7 @@ void BFS(LGraph G)
             printf("%c ", G.vexs[i].data);
             queue[rear++] = i;  // 入队列
         }
-        while (head != rear) 
+        while (head != rear)
         {
             j = queue[head++];  // 出队列
             node = G.vexs[j].first_edge;
@@ -326,7 +327,7 @@ void BFS(LGraph G)
  */
 void print_lgraph(LGraph G)
 {
-    int i,j;
+    int i;
     ENode *node;
 
     printf("List Graph:\n");
@@ -447,7 +448,7 @@ void prim(LGraph G, int start)
     printf("\n");
 }
 
-void main()
+int main()
 {
     LGraph* pG;
 
@@ -460,4 +461,5 @@ void main()
     //DFSTraverse(*pG);     // 深度优先遍历
     //BFS(*pG);             // 广度优先遍历
     prim(*pG, 0);           // prim算法生成最小生成树
+    return 0;
 }

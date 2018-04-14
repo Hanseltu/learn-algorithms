@@ -1,8 +1,9 @@
 /**
  * C: 邻接矩阵表示的"有向图(Matrix Directed Graph)"
  *
- * @author skywang
- * @date 2014/04/18
+ * @author Hanseltu
+ *
+ * @date 2018
  */
 
 #include <stdio.h>
@@ -58,7 +59,7 @@ Graph* create_graph()
     int v, e;
     int i, p1, p2;
     Graph* pG;
-    
+
     // 输入"顶点数"和"边数"
     printf("input vertex number: ");
     scanf("%d", &v);
@@ -69,7 +70,7 @@ Graph* create_graph()
         printf("input error: invalid parameters!\n");
         return NULL;
     }
-    
+
     if ((pG=(Graph*)malloc(sizeof(Graph))) == NULL )
         return NULL;
     memset(pG, 0, sizeof(Graph));
@@ -114,20 +115,20 @@ Graph* create_example_graph()
 {
     char vexs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
     char edges[][2] = {
-        {'A', 'B'}, 
-        {'B', 'C'}, 
-        {'B', 'E'}, 
-        {'B', 'F'}, 
-        {'C', 'E'}, 
-        {'D', 'C'}, 
-        {'E', 'B'}, 
-        {'E', 'D'}, 
-        {'F', 'G'}}; 
+        {'A', 'B'},
+        {'B', 'C'},
+        {'B', 'E'},
+        {'B', 'F'},
+        {'C', 'E'},
+        {'D', 'C'},
+        {'E', 'B'},
+        {'E', 'D'},
+        {'F', 'G'}};
     int vlen = LENGTH(vexs);
     int elen = LENGTH(edges);
     int i, p1, p2;
     Graph* pG;
-    
+
     // 输入"顶点数"和"边数"
     if ((pG=(Graph*)malloc(sizeof(Graph))) == NULL )
         return NULL;
@@ -171,7 +172,7 @@ void print_graph(Graph G)
     }
 }
 
-void main()
+int main()
 {
     Graph* pG;
 
@@ -181,4 +182,5 @@ void main()
     pG = create_example_graph();
 
     print_graph(*pG);       // 打印图
+    return 0;
 }
