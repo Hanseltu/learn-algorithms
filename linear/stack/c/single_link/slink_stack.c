@@ -51,7 +51,7 @@ static struct node* push(int val)
 	struct node *pnode = NULL;
 
 	pnode = create_node(val);
-	pnode->next = phead;
+	pnode->next = phead;  //相当于尾插法，后进先出，头指针始终指向刚进来的结点
 	phead = pnode;
 
 	return phead;
