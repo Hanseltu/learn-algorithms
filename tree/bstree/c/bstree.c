@@ -3,7 +3,7 @@
  *
  * @author Hanseltu
  *
- * @date 2018/04/14
+ * @date 2018/04/16
  */
 
 #include <stdio.h>
@@ -174,7 +174,7 @@ static Node* create_bstree_node(Type key, Node *parent, Node *left, Node* right)
 }
 
 /*
- * 将结点插入到二叉树中
+ * 将结点插入到二叉树中(结点存在)
  *
  * 参数说明：
  *     tree 二叉树的根结点
@@ -209,7 +209,7 @@ static Node* bstree_insert(BSTree tree, Node *z)
 }
 
 /*
- * 新建结点(key)，并将其插入到二叉树中
+ * 新建结点(key)，并将其插入到二叉树中(结点不存在)
  *
  * 参数说明：
  *     tree 二叉树的根结点
